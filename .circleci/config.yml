@@ -1,0 +1,14 @@
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:20.0.1
+    steps:
+      - checkout
+      - run: java --version
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build

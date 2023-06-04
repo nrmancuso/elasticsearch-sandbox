@@ -1,11 +1,20 @@
 
 jobs:
   build:
-    docker:
-      - image: cimg/openjdk:20.0.1
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
       - run: java --version
+      - run:
+          name: Start Elasticsearch
+          working_directory: ~/project/docker
+          command: |
+            docker --version
+            sudo sysctl -w vm.max_map_count=262144
+            docker-compose up -d
+            curl -s localhost:9200
+            curl -I -s localhost:9200 | grep 200
 
 workflows:
   version: 2

@@ -1,6 +1,6 @@
 
 jobs:
-  build:
+  compose-es:
     machine:
       image: ubuntu-2004:202010-01
     steps:
@@ -16,8 +16,22 @@ jobs:
             curl -s localhost:9200
             curl -I -s localhost:9200 | grep 200
 
+  build:
+    docker:
+      - image: cimg/openjdk:19.0.2
+    resource_class: small
+
+    steps:
+      - checkout
+      - run: java --version
+      - run:
+          name: Build
+          working_directory: ~/project
+          command: ./gradlew build --info --stacktrace
+
 workflows:
   version: 2
   build:
     jobs:
+      - compose-es
       - build

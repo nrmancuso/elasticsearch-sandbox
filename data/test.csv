@@ -1,0 +1,4 @@
+pl_name,hostname,pl_letter,gaia_id,sy_snum,sy_pnum,sy_mnum,discoverymethod,disc_year,disc_facility,pl_orbper,pl_orbpererr1,pl_orbpererr2,pl_orbperlim,st_spectype
+11 Com b,11 Com,b,Gaia DR2 3946945413106333696,2,1,0,Radial Velocity,2007,Xinglong Station,326.03000000,0.32000000,-0.32000000,0,G8 III
+11 Com b,11 Com,b,Gaia DR2 3946945413106333696,2,1,0,Radial Velocity,2007,Xinglong Station,,,,,
+11 UMi b,11 UMi,b,Gaia DR2 1696798367260229376,1,1,0,Radial Velocity,2009,Thueringer Landessternwarte Tautenburg,516.22000000,3.25000000,-3.25000000,0,K4 III

@@ -1,7 +1,7 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.1.0'
-	id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'org.springframework.boot' version '3.1.0'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 group = 'elasticsearch.sandbox'
@@ -9,20 +9,21 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '19'
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation("org.springframework.shell:spring-shell-starter:3.1.0")
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation('org.projectlombok:lombok:1.18.4')
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation("org.springframework.shell:spring-shell-starter:3.1.0")
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.10.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation('org.projectlombok:lombok:1.18.4')
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.15.2")
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

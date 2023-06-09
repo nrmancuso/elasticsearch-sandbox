@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExoPlanetDocument {
+public class ExoplanetDocument {
     @JsonProperty("pl_name")
     private String planetName;
 

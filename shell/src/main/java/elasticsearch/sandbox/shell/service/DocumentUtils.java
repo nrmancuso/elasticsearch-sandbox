@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import elasticsearch.sandbox.shell.docs.ExoPlanetDocument;
+import elasticsearch.sandbox.shell.docs.ExoplanetDocument;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -21,25 +21,25 @@ public final class DocumentUtils {
         throw new IllegalStateException("Utility class");
     }
 
-    public static List<ExoPlanetDocument> generateExoPlanetDocuments(String filename) {
+    public static List<ExoplanetDocument> generateExoplanetDocuments(String filename) {
         final CsvMapper csvMapper = new CsvMapper();
         final CsvSchema csvSchema = CsvSchema.emptySchema().withHeader();
         final ObjectReader objectReader = csvMapper
-                .readerFor(ExoPlanetDocument.class)
+                .readerFor(ExoplanetDocument.class)
                 .with(csvSchema);
 
-        final List<ExoPlanetDocument> exoPlanetDocuments = new ArrayList<>();
+        final List<ExoplanetDocument> exoplanetDocuments = new ArrayList<>();
         try (Reader reader = new FileReader(filename, StandardCharsets.UTF_8)) {
-            final MappingIterator<ExoPlanetDocument> mi = objectReader
+            final MappingIterator<ExoplanetDocument> mi = objectReader
                     .readValues(reader);
             while (mi.hasNext()) {
-                final ExoPlanetDocument current = mi.next();
-                exoPlanetDocuments.add(current);
+                final ExoplanetDocument current = mi.next();
+                exoplanetDocuments.add(current);
                 log.info("Current: {}", current);
             }
         } catch (IOException e) {
             log.error("Error reading file: {}", e.getMessage());
         }
-        return exoPlanetDocuments;
+        return exoplanetDocuments;
     }
 }

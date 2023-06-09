@@ -10,7 +10,7 @@ import org.springframework.shell.standard.ShellMethod;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import elasticsearch.sandbox.shell.docs.ExoPlanetDocument;
+import elasticsearch.sandbox.shell.docs.ExoplanetDocument;
 import elasticsearch.sandbox.shell.service.BulkInsertionService;
 import elasticsearch.sandbox.shell.service.DocumentUtils;
 import elasticsearch.sandbox.shell.service.Index;
@@ -42,11 +42,11 @@ public class DocumentInsertionCommands {
         log.info("Index: {}", index);
         log.info("Filename: {}", filename);
 
-        final List<ExoPlanetDocument> exoPlanetDocuments =
-                DocumentUtils.generateExoPlanetDocuments(filename);
-        log.info("ExoPlanetDocuments: {}", exoPlanetDocuments);
+        final List<ExoplanetDocument> exoplanetDocuments =
+                DocumentUtils.generateExoplanetDocuments(filename);
+        log.info("ExoplanetDocuments: {}", exoplanetDocuments);
 
-        final List<IndexRequest> indexRequests = exoPlanetDocuments.stream()
+        final List<IndexRequest> indexRequests = exoplanetDocuments.stream()
                 .map(this::toIndexRequest)
                 .toList();
 
@@ -54,10 +54,10 @@ public class DocumentInsertionCommands {
         bulkInsertionService.insertDocuments(indexRequests);
     }
 
-    private IndexRequest toIndexRequest(ExoPlanetDocument exoPlanetDocument) {
+    private IndexRequest toIndexRequest(ExoplanetDocument exoplanetDocument) {
         return new IndexRequest(Index.EXOPLANET.name().toLowerCase(Locale.ROOT))
-                .id(exoPlanetDocument.getGaiaId().replace(" ", "_"))
-                .source(objectMapper.convertValue(exoPlanetDocument,
+                .id(exoplanetDocument.getGaiaId().replace(" ", "_"))
+                .source(objectMapper.convertValue(exoplanetDocument,
                                 new TypeReference<Map<String, Object>>() {}));
     }
 }
